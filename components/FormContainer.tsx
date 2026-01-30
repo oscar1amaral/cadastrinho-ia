@@ -102,7 +102,7 @@ const FormContainer: React.FC<FormContainerProps> = ({ onNotify }) => {
 
         <div className="space-y-4">
           <a
-            href={`https://partner.pigz.dev/merchant/${merchantId}/products`}
+            href={`https://partner.pigz.com.br/merchant/${merchantId}/products`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full inline-flex items-center justify-center bg-secondary hover:bg-green-700 text-white font-bold py-6 px-10 rounded-2xl shadow-xl transition-all duration-300 transform hover:scale-105 active:scale-95 gap-3 text-xl uppercase tracking-widest"
