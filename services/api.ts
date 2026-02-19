@@ -1,21 +1,26 @@
 import { WebhookResponse } from "../types";
 
 const WEBHOOK_URL =
-  "https://pseudoimpartial-nonreputable-august.ngrok-free.dev/webhook/receber-dados-cardápio";
+  "https://pseudoimpartial-nonreputable-august.ngrok-free.dev/webhook-test/receber-dados-cardápio";
 
 /**
- * Envia a chave API, o Merchant ID e os arquivos para o webhook especificado.
+ * Envia a chave API, o Merchant ID, os arquivos e a descrição do cardápio para o webhook especificado.
  * Captura a resposta detalhada de erro do n8n se disponível.
  */
 export const sendToWebhook = async (
   apiKey: string,
   merchantId: string,
   files: File[],
+  menuDescription?: string,
 ): Promise<WebhookResponse> => {
   try {
     const formData = new FormData();
     formData.append("apiKey", apiKey);
     formData.append("merchantId", merchantId);
+
+    if (menuDescription) {
+      formData.append("menuDescription", menuDescription);
+    }
 
     files.forEach((file, index) => {
       formData.append(`file_${index}`, file);

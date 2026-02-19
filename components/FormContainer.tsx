@@ -11,6 +11,7 @@ const FormContainer: React.FC<FormContainerProps> = ({ onNotify }) => {
   const [apiKey, setApiKey] = useState("");
   const [merchantId, setMerchantId] = useState("");
   const [files, setFiles] = useState<FilePreview[]>([]);
+  const [menuDescription, setMenuDescription] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -56,12 +57,14 @@ const FormContainer: React.FC<FormContainerProps> = ({ onNotify }) => {
         apiKey,
         merchantId,
         files.map((f) => f.file),
+        menuDescription,
       );
       if (result.success) {
         setProgress(100);
         setTimeout(() => {
           setIsSuccess(true);
           setFiles([]);
+          setMenuDescription("");
           onNotify("Cardápio cadastrado, ver produtos", "success");
         }, 500);
       } else {
@@ -182,6 +185,19 @@ const FormContainer: React.FC<FormContainerProps> = ({ onNotify }) => {
             Upload de Matriz
           </label>
           <Dropzone files={files} setFiles={setFiles} onNotify={onNotify} />
+        </div>
+
+        <div className="space-y-3">
+          <label className="text-xs uppercase tracking-[0.2em] font-black text-white/30 ml-1">
+            Descrição / Prompt do Cardápio
+          </label>
+          <textarea
+            value={menuDescription}
+            onChange={(e) => setMenuDescription(e.target.value)}
+            placeholder="Ex: Categorias principais são: Entradas, Pratos Principais, Bebidas. Complementos incluem: Arroz, Feijão, Saladas. Descreva a estrutura esperada..."
+            rows={4}
+            className="w-full px-6 py-5 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/5 focus:ring-2 focus:ring-space-pink/40 focus:border-space-pink outline-none transition-all hover:bg-white/10 text-base resize-none"
+          />
         </div>
 
         <button
