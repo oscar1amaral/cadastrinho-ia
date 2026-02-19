@@ -1,7 +1,7 @@
 import { WebhookResponse } from "../types";
 
 const WEBHOOK_URL =
-  "https://pseudoimpartial-nonreputable-august.ngrok-free.dev/webhook-test/receber-dados-cardápio";
+  "https://pseudoimpartial-nonreputable-august.ngrok-free.dev/webhook/receber-dados-cardápio";
 
 /**
  * Envia a chave API, o Merchant ID, os arquivos e a descrição do cardápio para o webhook especificado.
